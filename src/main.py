@@ -10,7 +10,7 @@ root.title("Dungeons of the Dark Wizard")
 
 canvas = Canvas(root, width=winSize[0] * 0.8, height=winSize[1] * 0.65)
 canvas.grid(row=0, column=0)
-imgFile = Image.open("assets/images/sun.png")
+imgFile = Image.open("../assets/images/sun.png")
 
 resizedImage = imgFile.resize((int(winSize[0] * 0.8), int(winSize[1] * 0.65)), Image.LANCZOS)
 newImg = ImageTk.PhotoImage(resizedImage)
@@ -23,12 +23,12 @@ buttonFrame = Frame(actionFrame, bg='green', width=(winSize[0]*0.8)*0.3, height=
 itemFrame = Frame(actionFrame, bg='red', width=(winSize[0]*0.8)*0.835, height=winSize[1]*0.2)
 
 # Setup movement buttons
-moveForward = ImageTk.PhotoImage(file='assets/images/forward.png')
-moveRight = ImageTk.PhotoImage(file='assets/images/right.png')
-moveLeft = ImageTk.PhotoImage(file='assets/images/left.png')
-moveBack = ImageTk.PhotoImage(file='assets/images/back.png')
-lookLeft = ImageTk.PhotoImage(file='assets/images/turnLeft.png')
-lookRight = ImageTk.PhotoImage(file='assets/images/turnRight.png')
+moveForward = ImageTk.PhotoImage(file='../assets/images/forward.png')
+moveRight = ImageTk.PhotoImage(file='../assets/images/right.png')
+moveLeft = ImageTk.PhotoImage(file='../assets/images/left.png')
+moveBack = ImageTk.PhotoImage(file='../assets/images/back.png')
+lookLeft = ImageTk.PhotoImage(file='../assets/images/turnLeft.png')
+lookRight = ImageTk.PhotoImage(file='../assets/images/turnRight.png')
 moveForwardBtn = Button(buttonFrame, image=moveForward)
 moveRightBtn = Button(buttonFrame, image=moveRight)
 moveLeftBtn = Button(buttonFrame, image=moveLeft)
