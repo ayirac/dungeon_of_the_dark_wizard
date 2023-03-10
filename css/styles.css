@@ -1,0 +1,95 @@
+#game-screen {
+    height: 100%;
+    width: 100%;
+    background-image: url('../assets/images/sun.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+#stats-screen {
+    height: 100%;
+    width: 80%;
+    background-color: red;
+}
+
+#actions-screen {
+    height: 30%;
+    width: 100%;
+    background-color: blue;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    align-items: center;
+}
+
+#game-container {
+    display: grid;
+    height: 100vh;
+    width: 100vw;
+    grid-template-columns: 60vw 20vw;
+    padding: 20px;
+}
+
+.movement-buttons{
+    width: 89%;
+    height: 90%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    padding: 10px;
+    gap: 5px;
+}
+
+.movement-button {
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+#move-forward-button{
+    background-image: url("../assets/images/forward.png");
+    
+}
+
+#move-left-button{
+    background-image: url("../assets/images/left.png");
+    
+}
+
+#move-right-button{
+    background-image: url("../assets/images/right.png");
+
+}
+
+#move-back-button{
+    background-image: url("../assets/images/back.png");
+    
+}
+
+#turn-left-button{
+    background-image: url("../assets/images/turnLeft.png");
+    
+}
+
+#turn-right-button{
+    background-image: url("../assets/images/turnRight.png");
+    
+}
+
+#keybinds-container{
+    align-items: center;
+    justify-content: center;
+    width: 95%;
+    height: 85%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    background-color: green;
+    box-sizing: border-box;
+}
+
+.keybind-box {
+    height: 90%;
+    width: 80%;
+    margin: auto;
+    background-color: black;
+  }
