@@ -1,7 +1,19 @@
+body {
+    background-color:#110909
+}
+
+#game-container {
+    display: grid;
+    height: 100vh;
+    margin:0;
+    grid-template-columns: 60vw 20vw;
+    padding: 20px;
+}
+
 #game-screen {
     height: 100%;
     width: 100%;
-    background-image: url('../assets/images/sun.png');
+    background-image: url('../assets/images/views/8%2C2_N.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -22,13 +34,34 @@
     align-items: center;
 }
 
-#game-container {
-    display: grid;
-    height: 100vh;
-    width: 100vw;
-    grid-template-columns: 60vw 20vw;
-    padding: 20px;
+#minimap {
+    position: absolute;
+    width:8%;
+    height:13%;
+    background:blue;
+    text-align: center;
+    margin: auto;
+    top: 35vh;
+    right: 40.5vw;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+#minimap-potrait {
+    
+    width:90%;
+    height:90%;
+    
+}
+
+#minimap-potrait img {
+    width: 100%; /* or any custom size */
+    height: 100%;
+    object-fit: contain; 
+}
+
 
 .movement-buttons{
     width: 89%;
@@ -47,7 +80,7 @@
 }
 
 #move-forward-button{
-    background-image: url("../assets/images/forward.png");
+    background-image: url("/assets/images/forward.png");
     
 }
 
@@ -57,12 +90,12 @@
 }
 
 #move-right-button{
-    background-image: url("../assets/images/right.png");
+    background-image: url("/assets/images/right.png");
 
 }
 
 #move-back-button{
-    background-image: url("../assets/images/back.png");
+    background-image: url("/assets/images/back.png");
     
 }
 

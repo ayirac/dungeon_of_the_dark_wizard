@@ -1,45 +1,82 @@
-/// Todo, need to make JSON struct holding imgs for each direction & Pull from it
-cur_pos = '(0,0)'
+/// Todo, need to make JSON struct holding imgs for each moveDirection & Pull from it
+var curPos_X = 8; // (x,y)
+var curPos_Y = 3;
 var map;
+const directions = ["north", "east", "south", "west"];
+var curRot = 0; // 0 north, 1 east, 2, south, 3 west
+
 $.getJSON("data.json", function(json) {
-    console.log(json); // this will show the info it in firebug console
-    map = json
+    map = json;
 });
+
 // Movement Keybinds
 $(document).keydown(function(event) {
-    direction = "n/a";
+    moveDirection = "n/a"; // cont here, setup buttons, shouldnt be hard. add rest of nodes, submit
+    lookingDirection = "n/a";
     switch(event.which){
         case 87:
-            alert('W key pressed!');
-            direction = "north"
+            console.log('W key pressed!');
+            moveDirection = directions[curRot]
             break;
         case 65:
-            alert('A key pressed!');
-            direction = "west"
+            console.log('A key pressed!');
+            moveDirection = directions[(curRot + 4 -1) % 4]
             break;
         case 83:
-            alert('S key pressed!');
-            direction = "south"
+            console.log('S key pressed!');
+            moveDirection = directions[(curRot + 4 - 2) % 4]
             break;
         case 68:
-            alert('S key pressed!');
-            direction = "east"
+            console.log('D key pressed!');
+            moveDirection = directions[(curRot + 4 + 1) % 4]
             break;
         case 81:
-            alert('Q key pressed!');
+            curRot--;
+            if (curRot < 0)
+                curRot = 3;
+            console.log('Q key pressed!');
             break;
         case 69:
-            alert('E key pressed!');
+            curRot++;
+            curRot %= 4;
+            console.log('E key pressed!');
             break;
+        return(0);
     }
-    if (map[cur_pos][direction]['type'] == 'wall')
-        alert("WALL HIT");
-        // DONT MOVE
-    else if (map[cur_pos][direction]['type'] == 'air')
-        alert("AIR!")
-        // MOVE!
-        // (x,y), need to parse this string into int
-        pos = cur_pos.replace(/[()]/g, '');
-        x = pos.replace(//g, '');
-        alert(x) // cont here
+    curPosStr = `(${curPos_X},${curPos_Y})`;
+    console.log(curPosStr)
+    if (moveDirection != "n/a") {
+        if (map[curPosStr][moveDirection]['type'] == 'wall') // Don't move
+            console.log("WALL HIT");
+        else if (map[curPosStr][moveDirection]['type'] == 'air') { // Move
+            console.log("AIR!")
+        
+            nextPos_Y = curPos_Y;
+            nextPos_X = curPos_X;
+            console.log(moveDirection)
+            if (moveDirection == 'north')
+                nextPos_Y++;
+            else if (moveDirection == 'west')
+                nextPos_X--;
+            else if (moveDirection == 'south')
+                nextPos_Y--;
+            else if (moveDirection == 'east')
+                nextPos_X++;
+            nextPosStr = `(${nextPos_X},${nextPos_Y})`;
+            if (nextPosStr in map) { // Check if position exists on the map
+                curPos_Y = nextPos_Y;
+                curPos_X = nextPos_X;
+                curPosStr = `(${curPos_X},${curPos_Y})`;
+                console.log(directions[curRot]);
+                
+            }
+        }
+        console.log(`(${curPos_X},${curPos_Y})`);
+    }
+    
+    urlStr = map[curPosStr][directions[curRot]]['img'].replaceAll(",", "%2C"); // Replace ',' with %2C encoding
+    console.log(urlStr)
+    $("#game-screen").css("background-image", `url(${urlStr})`)
+
+    
 });
