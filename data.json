@@ -1,0 +1,38 @@
+{
+    "(0,0)": {
+        "north": {
+            "img": "img/wall.png",
+            "type": "wall"
+        },
+        "east": {
+            "img": "img/wall.png",
+            "type": "wall"
+        },
+        "south": {
+            "img": "img/air.png",
+            "type": "air"
+        },
+        "west": {
+            "img": "img/air.png",
+            "type": "air"
+        }
+    },
+    "(0,-1)": {
+        "north": {
+            "img": "img/",
+            "type": "wall"
+        },
+        "east": {
+            "img": "img/",
+            "type": "wall"
+        },
+        "south": {
+            "img": "img/",
+            "type": "air"
+        },
+        "west": {
+            "img": "img/",
+            "type": "wall"
+        }
+    }
+}
