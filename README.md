@@ -8,3 +8,5 @@ assets</br>
 css</br>
 js</br>
 misc (blender files, utility scripts, and map spreadsheet)
+
+![alt text](https://raw.githubusercontent.com/ayirac/dungeon_of_the_dark_wizard/main/preview/pic1.png?token=GHSAT0AAAAAAB6OH3AUP3GQZMNHTPC72366ZAY7DRQ)
