@@ -1,55 +1,100 @@
-/// Todo, need to make JSON struct holding imgs for each moveDirection & Pull from it
-var curPos_X = 8; // (x,y)
+var curPos_X = 8;
 var curPos_Y = 3;
+var curRot = 0;
+var moveDirection;
 var map;
 const directions = ["north", "east", "south", "west"];
-var curRot = 0; // 0 north, 1 east, 2, south, 3 west
 
 $.getJSON("data.json", function(json) {
     map = json;
 });
 
+
+// Button listeners
+const moveForwardBtn = document.getElementById('move-forward-button');
+const moveBackBtn = document.getElementById('move-back-button');
+const moveRightBtn = document.getElementById('move-right-button');
+const moveLeftBtn = document.getElementById('move-left-button');
+const turnRightBtn = document.getElementById('turn-right-button');
+const turnLeftBtn = document.getElementById('turn-left-button');
+
+moveForwardBtn.addEventListener('click', function() {
+    moveDirection = directions[curRot]
+    changeScene();
+})
+
+moveBackBtn.addEventListener('click', function() {
+    moveDirection = directions[(curRot + 4 - 2) % 4]
+    changeScene();
+})
+
+moveRightBtn.addEventListener('click', function() {
+    moveDirection = directions[(curRot + 4 + 1) % 4]
+    changeScene();
+})
+
+moveLeftBtn.addEventListener('click', function() {
+    moveDirection = directions[(curRot + 4 -1) % 4]
+    changeScene();
+})
+
+turnLeftBtn.addEventListener('click', function() {
+    moveDirection = "n/a";
+    curRot--;
+    if (curRot < 0)
+        curRot = 3;
+    changeScene();
+})
+
+turnRightBtn.addEventListener('click', function() {
+    moveDirection = "n/a";
+    curRot++;
+    curRot %= 4;
+    changeScene();
+})
+
 // Movement Keybinds
 $(document).keydown(function(event) {
-    moveDirection = "n/a"; // cont here, setup buttons, shouldnt be hard. add rest of nodes, submit
-    lookingDirection = "n/a";
+    moveDirection = "n/a";
     switch(event.which){
         case 87:
-            console.log('W key pressed!');
+        case 38:
             moveDirection = directions[curRot]
             break;
         case 65:
-            console.log('A key pressed!');
+        case 37:
             moveDirection = directions[(curRot + 4 -1) % 4]
             break;
         case 83:
-            console.log('S key pressed!');
+        case 40:
             moveDirection = directions[(curRot + 4 - 2) % 4]
             break;
         case 68:
-            console.log('D key pressed!');
+        case 39:
             moveDirection = directions[(curRot + 4 + 1) % 4]
             break;
         case 81:
             curRot--;
             if (curRot < 0)
                 curRot = 3;
-            console.log('Q key pressed!');
             break;
         case 69:
             curRot++;
             curRot %= 4;
-            console.log('E key pressed!');
             break;
         return(0);
     }
+    changeScene();
+});
+
+function changeScene() {
     curPosStr = `(${curPos_X},${curPos_Y})`;
     console.log(curPosStr)
     if (moveDirection != "n/a") {
         if (map[curPosStr][moveDirection]['type'] == 'wall') // Don't move
-            console.log("WALL HIT");
+            console.log("Hit wall, no update");
         else if (map[curPosStr][moveDirection]['type'] == 'air') { // Move
-            console.log("AIR!")
+            console.log("Hit air, update")
         
             nextPos_Y = curPos_Y;
             nextPos_X = curPos_X;
@@ -68,15 +113,11 @@ $(document).keydown(function(event) {
                 curPos_X = nextPos_X;
                 curPosStr = `(${curPos_X},${curPos_Y})`;
                 console.log(directions[curRot]);
-                
             }
         }
-        console.log(`(${curPos_X},${curPos_Y})`);
+        console.log(`POS: (${curPos_X},${curPos_Y})`);
     }
-    
     urlStr = map[curPosStr][directions[curRot]]['img'].replaceAll(",", "%2C"); // Replace ',' with %2C encoding
     console.log(urlStr)
     $("#game-screen").css("background-image", `url(${urlStr})`)
-
-    
-});
+}
